@@ -7,7 +7,7 @@
    mikroC
 */
 
-#define SensorMq RA0_bit
+#define sensorMq RA0_bit
 
 #define ledVermelho RB0_bit
 #define ledVerde RB1_bit
