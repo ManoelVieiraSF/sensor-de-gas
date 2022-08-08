@@ -1,0 +1,40 @@
+/*
+   Sensor de Gás MQ-2
+   com alerta sonoro e luminoso
+   
+   Autor: Manoel
+   uC: PIC16F628A
+   mikroC
+*/
+
+#define SensorMq RA0_bit
+
+#define ledVermelho RB0_bit
+#define ledVerde RB1_bit
+#define buzzer RB2_bit
+
+
+void main(){
+    TRISA = 0xFF;
+    TRISB = 0x00;
+    PORTB = 0x00;
+    
+    ledVerde = 1; //Sinaliza que não está detectando gases
+    ledVermelho = 0; //Sinaliza que detectou gás
+    buzzer = 0;
+    
+    while(1)
+    {
+        if(!SensorMq){
+            ledVerde = 0;
+            ledVermelho = 1;
+            buzzer = 1;
+            delay_ms(5000);
+        }
+        else{
+            ledVerde = 1;
+            ledVermelho = 0;
+            buzzer = 0;
+        }
+    }
+}
